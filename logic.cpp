@@ -368,6 +368,7 @@ bool singlePlayer(char grid[3][3], std::string Uname, bool end)
                 else if (userInput == "exit" || userInput == "Exit")
                 {
                     end = true;
+                    return end;
                 }
                 validMove = Pmove(grid, move, Pelement);
             }
@@ -484,6 +485,7 @@ bool twoPlayer(char grid[3][3], std::string p1Name, std::string p2Name, bool end
                 else if (userInput == "exit" || userInput == "Exit")
                 {
                     end = true;
+                    return end;
                 }
                 validMove = Pmove(grid, move, p1Element);
             }

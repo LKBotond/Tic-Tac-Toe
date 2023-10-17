@@ -3,7 +3,9 @@
 #include <iomanip>
 // this function sets up the gamemode by returning the ascociated intiger
 int setup(bool end)
-{
+{   
+    const std::string Splayer{"1"};
+    const std::string Mplayer{"2"};
     std::string UserInput;
     int gamemode;
     bool validInput{false};
@@ -17,7 +19,7 @@ int setup(bool end)
     while (!validInput)
     {
         std::cin >> UserInput;
-        if (UserInput == "1" || UserInput == "2")
+        if (UserInput == Splayer || UserInput == Mplayer)
         {
             gamemode = std::stoi(UserInput);
             return gamemode;
@@ -34,12 +36,12 @@ int setup(bool end)
     }
     return gamemode;
 }
-std::string name()
+std::string getName()
 {
-    std::string Uname;
+    std::string name;
     std::cout << "Please enter your name:" << std::endl;
-    std::cin >> Uname;
-    return Uname;
+    std::cin >> name;
+    return name;
 }
 void showMap(char grid[3][3], bool Tutorial)
 {
@@ -81,7 +83,9 @@ void showMap(char grid[3][3], bool Tutorial)
 }
 void tutorial(int gamemode, char grid[3][3])
 {
-    if (gamemode == 1)
+    const int Splayer{1};
+    const int Mplayer{2};
+    if (gamemode == Splayer)
     {
         bool Tutorial{true};
         std::cout << "You have chosen the single player option" << std::endl;
@@ -91,7 +95,7 @@ void tutorial(int gamemode, char grid[3][3])
         std::cout << "The numbers on the screen visualize the avaliable positions to take" << std::endl;
         std::cout << "to take a position simply type in its number" << std::endl;
     }
-    else if (gamemode == 2)
+    else if (gamemode == Mplayer)
     {
         bool Tutorial{true};
         std::cout << "You have chosen the Multplayer option" << std::endl;
@@ -106,10 +110,11 @@ void tutorial(int gamemode, char grid[3][3])
 void cMove(char grid[3][3])
 {
     bool ValidMove{false};
-
+    int mapSize{9};
+    int startFrom{0};
     while (!ValidMove)
     {
-        int move = 0 + rand() % 9;
+        int move = startFrom + rand() % mapSize;
         switch (move)
         {
         case 0:
@@ -511,6 +516,7 @@ bool twoPlayer(char grid[3][3], std::string p1Name, std::string p2Name, bool end
                 else if (userInput == "exit" || userInput == "Exit")
                 {
                     end = true;
+                    return end;
                 }
                 validMove = Pmove(grid, move, p2Element);
             }

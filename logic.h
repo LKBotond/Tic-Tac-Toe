@@ -1,7 +1,9 @@
+#ifndef LOGIC_HEADER
+#define LOGIC_HEADER
 // this function sets up the gamemode either single player, or two player
 int setup(bool end);
 // this function gets the name of the player
-std::string name();
+std::string getName();
 //this function takes and decides the userinput
 void showMap(char grid[3][3], bool Tutorial);
 // this function shows the tutorial depending on the gamemode
@@ -16,3 +18,4 @@ bool Victory(char[3][3], char element);
 bool singlePlayer(char grid[3][3], std::string Uname, bool end);
 // this is the two player gamemode
 bool twoPlayer(char grid[3][3], std::string p1Name, std::string p2Name, bool end);
+#endif
